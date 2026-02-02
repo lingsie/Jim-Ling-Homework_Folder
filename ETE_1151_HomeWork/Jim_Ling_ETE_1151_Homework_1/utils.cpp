@@ -17,12 +17,12 @@ std::string charIntoBinary(char c) {
 }
 
 // 32 bit == int 
-std::string intIntoBinart(int num) {
+std::string intIntoBinary(int num) {
     return std:bitset<32>(num).to_string(); // output == str
 }
 
 // same 32 bit
-std::string floatIntoBinart(float num) {
+std::string floatIntoBinary(float num) {
     union {
         float input;
         uint32_t output;
