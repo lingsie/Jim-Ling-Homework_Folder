@@ -6,6 +6,13 @@
 
 
 // make a function change to lowercase
+// lower
+std::string LowerC(std::string s){
+   std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+   return s;
+}
+
+
 
 
 // def()
