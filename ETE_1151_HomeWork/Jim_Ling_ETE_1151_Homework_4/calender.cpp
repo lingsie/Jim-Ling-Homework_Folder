@@ -4,12 +4,18 @@
 // bring in
 #include <iostream>
 #include <iomanip>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+
+// too much stds
+using namespace std;
 
 
 
 // function check for leap
  bool isLeapYear(int year) {
-    return (year % 4 == 0 && year % 100 != 0) || (year % == 0); // a leap year can /4 but can not be /100, but can be /400
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0); // a leap year can /4 but can not be /100, but can be /400
  }
 
 
@@ -35,10 +41,8 @@ int getStartDate(int year) {
     int k = y % 100;
     int j = y / 100;
     int f = d + (13*(m + 1))/5 + k +k/4 +j/4 + 5*j;
-    return (f % 7 + 6) % 7; // to make SUN to be the firest day woll be easier
+    return (f % 7 + 6) % 7; // to mak Mon to be the firest day woll be easier
 }
-
-
 
 
 
@@ -51,18 +55,20 @@ void printOutMonth(int month, int year, int& start_day) {
     };
 
     int days = getNumDays (month, year);
-    cout << "--", << month[month] << "" << year[year] << "--" << endl;
+    cout << "-- " << months[month] << " " << year << " --" << endl;
+    cout << "   Mon  Tue  Wed  Thu  Fri  Sat  Sun" << endl;
 
     // for loop
-    for (int i = 0; i < start_day; ++i)
-    cout << "   ";
+    for (int i = 0; i < start_day; ++i) {
+    cout << setw(5) << "";
+    }
 
     for (int day = 1; day <= days; ++day) {
-        ciyt << setw(5) << day;
+        cout << setw(5) << day;
         start_day = (start_day + 1) % 7;
-        if (start_day == 0) cout << endl;
+        if (start_day == 0) cout << endl; // new week
     }
-    if (start_day == 0) cout << endl;
+    if (start_day != 0) cout << endl; // to end line
     cout << endl;
 }
 
@@ -71,14 +77,16 @@ void printOutMonth(int month, int year, int& start_day) {
 // main()
 int main() {
     int year;
+    cout << "Please enter a year: ";
     cin >> year;
 
-    int start_day = getStartDate(year) // find out the 1/1
+    int start_day = getStartDate(year); // find out the 1/1
     cout << "\nCalinder for: " << year << "\n" << endl;
 
-    fir(int month = 1; month <+ 12; ++ month) {
+    for (int month = 1; month <= 12; ++ month) {
         printOutMonth(month, year, start_day);
     }
+
     // End
     return 0;
 }
